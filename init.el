@@ -48,10 +48,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Package
 
-(add-to-list 'load-path "~/.emacs.d/elpa")
-
-
 ;; Marmalade
+(add-to-list 'load-path "~/.emacs.d/elpa")
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
@@ -62,9 +60,20 @@
   (package-refresh-contents))
 
 (defvar my-packages 
-  '(starter-kit)
+  '(starter-kit
+    slime
+    slime-repl
+    clojure-mode
+    clojurescript-mode
+    auto-complete)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+;; auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-1.4/dict/")
+(ac-config-default)
+
