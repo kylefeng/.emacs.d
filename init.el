@@ -16,6 +16,10 @@
 
 ;; 括号匹配
 (show-paren-mode t)
+(setq show-paren-style 'parentheses)
+(defun paredit-mode-enable () (paredit-mode 1))
+(add-hook 'clojure-mode-hook 'paredit-mode-enable)
+(add-hook 'clojure-test-mode-hook 'paredit-mode-enable)
 
 ;; 窗口大小
 (setq default-frame-alist
@@ -77,3 +81,26 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-1.4/dict/")
 (ac-config-default)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Clojure
+
+;; 打开 clj 文件自动启动 clojuer-jack-in 与 slime 的连接 
+(eval-after-load "clojure-mode"
+  '(progn
+    (require 'slime)
+    (require 'clojure-mode)
+    (unless (slime-connected-p)
+      (save-excursion (clojure-jack-in)))))
+
+;; 启用 IO 重定向，设置通讯编码
+(eval-after-load "clojure-mode"
+  '(progn
+    (require 'slime)
+    (setq swank:*globally-redirect-io* t)
+    (setq slime-net-coding-system 'utf-8-unix)))
+
+;; REPL 支持语法高亮
+(add-hook 'slime-repl-mode-hook
+  (defun clojure-mode-slime-font-lock ()
+    (require 'clojure-mode)
+    (let (font-lock-mode)
+      (clojure-mode-font-lock-setup))))
