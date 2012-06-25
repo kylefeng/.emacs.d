@@ -57,3 +57,14 @@
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 
+;; 保证所有机器都会安装相应的包
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(defvar my-packages 
+  '(starter-kit)
+  "A list of packages to ensure are installed at launch.")
+
+(dolist (p my-packages)
+  (when (not (package-installed-p p))
+    (package-install p)))
