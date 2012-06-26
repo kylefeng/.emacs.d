@@ -40,6 +40,20 @@
     (color-theme-initialize)
     (color-theme-charcoal-black)))
 
+;; Font
+(set-default-font "courier 10 pitch-12")
+(set-fontset-font "fontset-default"
+                  'han '("WenQuanYi Bitmap Song" . "unicode-bmp"))
+(set-fontset-font "fontset-default"
+                  'cjk-misc '("WenQuanYi Bitmap Song" . "unicode-bmp"))
+(set-fontset-font "fontset-default"
+                  'bopomofo '("WenQuanYi Bitmap Song" . "unicode-bmp"))
+(set-fontset-font "fontset-default"
+                  'gb18030 '("WenQuanYi Bitmap Song". "unicode-bmp"))
+(set-fontset-font "fontset-default"
+                  'symbol '("WenQuanYi Bitmap Song". "unicode-bmp"))
+(add-to-list 'default-frame-alist '(font . "courier 10 pitch-12"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 文件设置
 
 ;; 自动备份设置
@@ -135,13 +149,3 @@
             (font-lock-mode nil)
             (clojure-font-lock-setup)
             (font-lock-mode t)))
-
-
-
-
-
-
-
-
-
-
