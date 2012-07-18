@@ -9,6 +9,9 @@
 ;; 支持外部程序粘贴
 (setq x-select-enable-clipboard t)
 
+;; 拼写检查
+(ispell-change-dictionary "american" t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 显示设置
 
 ;; 关闭工具条
