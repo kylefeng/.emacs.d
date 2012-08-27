@@ -53,6 +53,38 @@
   kept-old-version 2                           ; 保留最早的2个备份文件
   version-control t)                           ; 多次备份
 
+;; 自动切换到 markdown-mode
+(setq auto-mode-alist
+      (cons '("\\.text" . markdown-mode) auto-mode-alist))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key
+
+;; copy region or whole line
+(global-set-key "\M-w"
+                (lambda ()
+                  (interactive)
+                  (if mark-active
+                      (kill-ring-save (region-beginning)
+                                      (region-end))
+                    (progn
+                      (kill-ring-save (line-beginning-position)
+                                      (line-end-position))
+                      (message "copied line")))))
+
+
+;; kill region or whole line
+(global-set-key "\C-w"
+                (lambda ()
+                  (interactive)
+                  (if mark-active
+                      (kill-region (region-beginning)
+                                   (region-end))
+                    (progn
+                      (kill-region (line-beginning-position)
+                                   (line-end-position))
+                      (message "killed line")))))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Package
 
 ;; Marmalade
@@ -72,7 +104,8 @@
     slime-repl
     clojure-mode
     clojurescript-mode
-    auto-complete)
+    auto-complete
+    markdown-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
