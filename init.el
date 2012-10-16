@@ -113,6 +113,7 @@
     slime-repl
     clojure-mode
     clojurescript-mode
+    coffee-mode
     auto-complete
     markdown-mode)
   "A list of packages to ensure are installed at launch.")
