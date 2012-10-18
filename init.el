@@ -181,3 +181,8 @@
             (font-lock-mode nil)
             (clojure-font-lock-setup)
             (font-lock-mode t)))
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CoffeeScript
+(custom-set-variables '(coffee-tab-width 2))
