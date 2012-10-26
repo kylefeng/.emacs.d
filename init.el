@@ -113,6 +113,7 @@
     slime-repl
     clojure-mode
     clojurescript-mode
+    nrepl
     coffee-mode
     auto-complete
     markdown-mode)
@@ -129,22 +130,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Clojure
 
-;; 打开 clj 文件自动启动 clojuer-jack-in 与 slime 的连接 
 (eval-after-load "clojure-mode"
   '(progn
     (require 'slime)
     (require 'clojure-mode)
     (unless (slime-connected-p)
-      (save-excursion (clojure-jack-in)))))
-
-;; 启用 IO 重定向，设置通讯编码
-(eval-after-load "clojure-mode"
-  '(progn
-    (require 'slime)
-    (setq swank:*globally-redirect-io* t)
+      (save-excursion (nrepl-jack-in)))
     (setq slime-net-coding-system 'utf-8-unix)))
 
-;; slime REPL 支持 Clojure 的语法高亮
 
 ;;; all code in this function lifted from the clojure-mode function
 ;;; from clojure-mode.el
