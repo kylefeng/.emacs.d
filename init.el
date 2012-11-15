@@ -22,6 +22,7 @@
 (setq show-paren-style 'parentheses)
 (defun paredit-mode-enable () (paredit-mode 1))
 (add-hook 'clojure-mode-hook 'paredit-mode-enable)
+(add-hook 'clojure-mode-hook 'highlight-parentheses-mode)
 (add-hook 'clojure-test-mode-hook 'paredit-mode-enable)
 
 ;; 窗口大小
@@ -116,7 +117,8 @@
     nrepl
     coffee-mode
     auto-complete
-    markdown-mode)
+    markdown-mode
+    highlight-parentheses)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
