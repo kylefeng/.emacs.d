@@ -171,6 +171,12 @@
           (font-lock-syntactic-face-function
            . lisp-font-lock-syntactic-face-function))))
 
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
 (add-hook 'slime-repl-mode-hook
           (lambda ()
             (font-lock-mode nil)
@@ -178,6 +184,12 @@
             (font-lock-mode t)))
 
 
+(add-hook 'nrepl-mode-hook
+          (lambda ()
+            (font-lock-mode nil)
+            (clojure-font-lock-setup)
+            (font-lock-mode t)
+            (remove-dos-eol)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CoffeeScript
 (custom-set-variables '(coffee-tab-width 2))
