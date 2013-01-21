@@ -1,5 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 通用设置
 
+(global-linum-mode t)
+
 ;; Close *Gnu Emacs* Buffer
 (setq inhibit-startup-screen t)
 
@@ -43,6 +45,11 @@
   '(progn
     (color-theme-initialize)
     (color-theme-charcoal-black)))
+
+;; Powerline
+(add-to-list 'load-path "~/.emacs.d/powerline")
+(require 'powerline)
+(powerline-default)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 文件设置
 
