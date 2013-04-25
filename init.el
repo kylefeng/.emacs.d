@@ -14,6 +14,9 @@
 ;; 拼写检查
 (ispell-change-dictionary "american" t)
 
+(setq default-buffer-file-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 显示设置
 
 ;; 关闭工具条
@@ -54,6 +57,13 @@
 (custom-set-faces
  '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
  '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
+
+
+;; io-mode
+(add-to-list 'load-path "~/.emacs.d/io-mode")
+(require 'io-mode)
+(setq auto-mode-alist
+      (cons '("\\.io" . io-mode) auto-mode-alist))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 文件设置
 
@@ -127,6 +137,7 @@
     clojurescript-mode
     nrepl
     coffee-mode
+    erlang
     auto-complete
     markdown-mode
     highlight-parentheses)
@@ -140,6 +151,9 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-1.4/dict/")
 (ac-config-default)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Erlang
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Clojure
 
