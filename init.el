@@ -45,7 +45,7 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/emacs-color-theme-solarized")
 (add-to-list 'load-path "~/.emacs.d/color-theme/tomorrow-theme")
 (require 'color-theme-tomorrow)
-(color-theme-tomorrow-night)
+(color-theme-tomorrow-night-bright)
 
 ;; Powerline
 (add-to-list 'load-path "~/.emacs.d/powerline")
@@ -171,6 +171,8 @@
       (save-excursion (nrepl-jack-in)))
     (setq slime-net-coding-system 'utf-8-unix)))
 
+;; Hide special buffers
+(setq nrepl-hide-special-buffers t)
 
 ;; Enable eldoc in clojure buffers
 (add-hook 'nrepl-interaction-mode-hook
@@ -232,7 +234,8 @@
             (font-lock-mode nil)
             (clojure-font-lock-setup)
             (font-lock-mode t)
-            (remove-dos-eol)))
+            (remove-dos-eol)
+            (subword-mode)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CoffeeScript
 (custom-set-variables '(coffee-tab-width 2))
