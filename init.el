@@ -42,12 +42,10 @@
 (setq line-number-mode t)
 
 ;; Color-theme
-(add-to-list 'load-path "~/.emacs.d/color-theme")
-(require 'color-theme)
-(eval-after-load "color-theme"
-  '(progn
-    (color-theme-initialize)
-    (color-theme-charcoal-black)))
+(add-to-list 'custom-theme-load-path "~/.emacs.d/color-theme/emacs-color-theme-solarized")
+(add-to-list 'load-path "~/.emacs.d/color-theme/tomorrow-theme")
+(require 'color-theme-tomorrow)
+(color-theme-tomorrow-night)
 
 ;; Powerline
 (add-to-list 'load-path "~/.emacs.d/powerline")
@@ -140,12 +138,21 @@
     erlang
     auto-complete
     markdown-mode
-    highlight-parentheses)
+    highlight-parentheses
+    yaml-mode
+    vline
+    hl-line+
+    col-highlight
+    crosshairs)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
+
+;; crosshair highlighting
+(toggle-crosshairs-when-idle)
+
 
 ;; auto-complete
 (require 'auto-complete-config)
@@ -157,13 +164,25 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Clojure
 
-(eval-after-load "clojure-mode"
+'(eval-after-load "clojure-mode"
   '(progn
     (require 'slime)
     (require 'clojure-mode)
     (unless (slime-connected-p)
       (save-excursion (nrepl-jack-in)))
     (setq slime-net-coding-system 'utf-8-unix)))
+
+
+;; Enable eldoc in clojure buffers
+(add-hook 'nrepl-interaction-mode-hook
+          'nrepl-turn-on-eldoc-mode)
+
+;; Stop popping up error buffer other than the REPL
+(setq nrepl-popup-stacktraces nil)
+
+;; Enable error buffer popping also in the REPL
+(setq nrepl-popup-stacktraces-in-repl t)
+
 
 
 ;;; all code in this function lifted from the clojure-mode function
