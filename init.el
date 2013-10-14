@@ -1,28 +1,21 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 通用设置
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; global configs
 
 (global-linum-mode t)
 
 ;; Close *Gnu Emacs* Buffer
 (setq inhibit-startup-screen t)
 
-;; 关闭错误提示音
 (setq visible-bell t)
-
-;; 支持外部程序粘贴
 (setq x-select-enable-clipboard t)
-
-;; 拼写检查
 (ispell-change-dictionary "american" t)
-
 (setq default-buffer-file-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 显示设置
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Display
 
-;; 关闭工具条
+;; Turn off tool bar
 (tool-bar-mode nil)
 
-;; 括号匹配
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
 (defun paredit-mode-enable () (paredit-mode 1))
@@ -30,7 +23,7 @@
 (add-hook 'clojure-mode-hook 'highlight-parentheses-mode)
 (add-hook 'clojure-test-mode-hook 'paredit-mode-enable)
 
-;; 窗口大小
+;; Size of window
 (setq default-frame-alist
   '((height . 40)
     (width  . 125)
@@ -56,26 +49,23 @@
  '(mode-line ((t (:foreground "#030303" :background "#bdbdbd" :box nil))))
  '(mode-line-inactive ((t (:foreground "#f9f9f9" :background "#666666" :box nil)))))
 
-
 ;; io-mode
 (add-to-list 'load-path "~/.emacs.d/io-mode")
 (require 'io-mode)
 (setq auto-mode-alist
       (cons '("\\.io" . io-mode) auto-mode-alist))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; 文件设置
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Files
 
-;; 自动备份设置
 (setq backup-by-copying t
-  backup-directory-alist '(("." . "~/.saves")) ; 自动备份到 ~/.saves 文件夹
-  delete-old-versions t                        ; 自动删除旧的备份文件
-  kept-new-version 6                           ; 保留最近的6个备份文件
-  kept-old-version 2                           ; 保留最早的2个备份文件
-  version-control t)                           ; 多次备份
+  backup-directory-alist '(("." . "~/.saves")) 
+  delete-old-versions t                        
+  kept-new-version 6                           
+  kept-old-version 2                           
+  version-control t)                           
 
-;; 自动切换到 markdown-mode
 (setq auto-mode-alist
-      (cons '("\\.text" . markdown-mode) auto-mode-alist))
+      (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key
 
@@ -118,11 +108,12 @@
 
 ;; Marmalade
 (require 'package)
+
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
+
 (package-initialize)
 
-;; 保证所有机器都会安装相应的包
 (when (not package-archive-contents)
   (package-refresh-contents))
 
@@ -142,7 +133,9 @@
     vline
     hl-line+
     col-highlight
-    crosshairs)
+    crosshairs
+    haskell-mode
+    sml-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -246,3 +239,7 @@
           (lambda ()
             (setq sgml-basic-offset 4)
             (setq indent-tabs-mode t)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Haskell Mode
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
