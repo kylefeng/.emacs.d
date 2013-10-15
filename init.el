@@ -62,10 +62,7 @@
   delete-old-versions t                        
   kept-new-version 6                           
   kept-old-version 2                           
-  version-control t)                           
-
-(setq auto-mode-alist
-      (cons '("\\.md" . markdown-mode) auto-mode-alist))
+  version-control t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; key
 
@@ -150,6 +147,17 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-1.4/dict/")
 (ac-config-default)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown
+
+(setq auto-mode-alist
+      (cons '("\\.md" . markdown-mode) auto-mode-alist))
+
+(add-hook 'markdown-mode
+          (lambda ()
+            (turn-off-auto-fill)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Erlang
 
