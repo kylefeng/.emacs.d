@@ -154,9 +154,8 @@
 (setq auto-mode-alist
       (cons '("\\.md" . markdown-mode) auto-mode-alist))
 
-(add-hook 'markdown-mode
-          (lambda ()
-            (turn-off-auto-fill)))
+(add-hook 'markdown-mode-hook
+          'turn-off-auto-fill)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Erlang
