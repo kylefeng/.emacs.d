@@ -105,9 +105,9 @@
 
 ;; Marmalade
 (require 'package)
-
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (package-initialize)
 
@@ -132,7 +132,9 @@
     col-highlight
     crosshairs
     haskell-mode
-    sml-mode)
+    sml-mode
+    soft-morning-theme
+    json-mode)
   "A list of packages to ensure are installed at launch.")
 
 (dolist (p my-packages)
@@ -147,6 +149,9 @@
 (require 'auto-complete-config)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete-1.4/dict/")
 (ac-config-default)
+
+(add-hook 'text-mode-hook
+          (lambda () (turn-on-auto-fill 0)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown
