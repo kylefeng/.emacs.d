@@ -15,13 +15,8 @@
 
 ;; Turn off tool bar
 (tool-bar-mode nil)
-
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
-(defun paredit-mode-enable () (paredit-mode 1))
-(add-hook 'clojure-mode-hook 'paredit-mode-enable)
-(add-hook 'clojure-mode-hook 'highlight-parentheses-mode)
-(add-hook 'clojure-test-mode-hook 'paredit-mode-enable)
 
 ;; Size of window
 (setq default-frame-alist
@@ -91,6 +86,13 @@
                                    (line-end-position))
                       (message "killed line")))))
 
+
+(defun remove-dos-eol ()
+  "Do not show ^M in files containing mixed UNIX and DOS line endings."
+  (interactive)
+  (setq buffer-display-table (make-display-table))
+  (aset buffer-display-table ?\^M []))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Hippie Expand
 (global-set-key (kbd "M-/") 'hippie-expand)
 
@@ -120,7 +122,7 @@
     slime-repl
     clojure-mode
     clojurescript-mode
-    nrepl
+    cider
     coffee-mode
     erlang
     auto-complete
@@ -162,34 +164,11 @@
 (add-hook 'markdown-mode-hook
           'turn-off-auto-fill)
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Erlang
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Clojure
 
-'(eval-after-load "clojure-mode"
-  '(progn
-    (require 'slime)
-    (require 'clojure-mode)
-    (unless (slime-connected-p)
-      (save-excursion (nrepl-jack-in)))
-    (setq slime-net-coding-system 'utf-8-unix)))
-
-;; Hide special buffers
-(setq nrepl-hide-special-buffers t)
-
-;; Enable eldoc in clojure buffers
-(add-hook 'nrepl-interaction-mode-hook
-          'nrepl-turn-on-eldoc-mode)
-
-;; Stop popping up error buffer other than the REPL
-(setq nrepl-popup-stacktraces nil)
-
-;; Enable error buffer popping also in the REPL
-(setq nrepl-popup-stacktraces-in-repl t)
-
-
+;; Paredit-mode
+(add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'highlight-parentheses-mode)
 
 ;;; all code in this function lifted from the clojure-mode function
 ;;; from clojure-mode.el
@@ -221,28 +200,33 @@
           (font-lock-syntactic-face-function
            . lisp-font-lock-syntactic-face-function))))
 
-(defun remove-dos-eol ()
-  "Do not show ^M in files containing mixed UNIX and DOS line endings."
-  (interactive)
-  (setq buffer-display-table (make-display-table))
-  (aset buffer-display-table ?\^M []))
 
-(add-hook 'slime-repl-mode-hook
-          (lambda ()
-            (font-lock-mode nil)
-            (clojure-font-lock-setup)
-            (font-lock-mode t)))
+;; Enable eldoc
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
+;; Hide *nrepl-connnection* and *nrepl-server* buffer
+(setq nrepl-hide-special-buffers t)
 
-(add-hook 'nrepl-mode-hook
-          (lambda ()
-            (font-lock-mode nil)
-            (clojure-font-lock-setup)
-            (font-lock-mode t)
-            (remove-dos-eol)
-            (subword-mode)))
+;; tab indent
+(setq cider-repl-tab-command 'indent-for-tab-command)
+
+;; Stop the error buffer from popping up while working in buffers other than the REPL:
+(setq cider-popup-stacktraces nil)
+
+;; Enable error buffer popping also in the REPL:
+(setq cider-repl-popup-stacktraces t)
+
+;; To auto-select the error buffer when it's displayed:
+(setq cider-auto-select-error-buffer t)
+
+;; Buffer name will look like cider project-name:port.
+(setq nrepl-buffer-name-show-port t)
+
+;; Make C-c C-z switch to the CIDER REPL buffer in the current window:
+(setq cider-repl-display-in-current-window t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CoffeeScript
+
 (custom-set-variables '(coffee-tab-width 2))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; HTML mode
