@@ -118,8 +118,6 @@
 
 (defvar my-packages 
   '(starter-kit
-    slime
-    slime-repl
     cider
     coffee-mode
     erlang
