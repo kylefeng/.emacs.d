@@ -120,8 +120,6 @@
   '(starter-kit
     slime
     slime-repl
-    clojure-mode
-    clojurescript-mode
     cider
     coffee-mode
     erlang
@@ -170,37 +168,6 @@
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'highlight-parentheses-mode)
 
-;;; all code in this function lifted from the clojure-mode function
-;;; from clojure-mode.el
-(defun clojure-font-lock-setup ()
-  (interactive)
-  (set (make-local-variable 'lisp-indent-function)
-       'clojure-indent-function)
-  (set (make-local-variable 'lisp-doc-string-elt-property)
-       'clojure-doc-string-elt)
-  (set (make-local-variable 'font-lock-multiline) t)
-
-  (add-to-list 'font-lock-extend-region-functions
-               'clojure-font-lock-extend-region-def t)
-
-  (when clojure-mode-font-lock-comment-sexp
-    (add-to-list 'font-lock-extend-region-functions
-                 'clojure-font-lock-extend-region-comment t)
-    (make-local-variable 'clojure-font-lock-keywords)
-    (add-to-list 'clojure-font-lock-keywords
-                 'clojure-font-lock-mark-comment t)
-    (set (make-local-variable 'open-paren-in-column-0-is-defun-start) nil))
-
-  (setq font-lock-defaults
-        '(clojure-font-lock-keywords    ; keywords
-          nil nil
-          (("+-*/.<>=!?$%_&~^:@" . "w")) ; syntax alist
-          nil
-          (font-lock-mark-block-function . mark-defun)
-          (font-lock-syntactic-face-function
-           . lisp-font-lock-syntactic-face-function))))
-
-
 ;; Enable eldoc
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
@@ -223,7 +190,7 @@
 (setq nrepl-buffer-name-show-port t)
 
 ;; Make C-c C-z switch to the CIDER REPL buffer in the current window:
-(setq cider-repl-display-in-current-window t)
+(setq cider-repl-display-in-current-window nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; CoffeeScript
 
