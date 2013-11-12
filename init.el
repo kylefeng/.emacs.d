@@ -165,15 +165,13 @@
 ;; Paredit-mode
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
 (add-hook 'cider-repl-mode-hook 'highlight-parentheses-mode)
+(add-hook 'cider-mode-hook 'paredit-mode)
 
 ;; Enable eldoc
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
 ;; Hide *nrepl-connnection* and *nrepl-server* buffer
 (setq nrepl-hide-special-buffers t)
-
-;; tab indent
-(setq cider-repl-tab-command 'indent-for-tab-command)
 
 ;; Stop the error buffer from popping up while working in buffers other than the REPL:
 (setq cider-popup-stacktraces nil)
