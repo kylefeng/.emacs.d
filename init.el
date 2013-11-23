@@ -209,7 +209,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; scheme
 
 (require 'cmuscheme)
-(setq scheme-program-name "petite")
+(setq scheme-program-name "racket")
 
 (defun scheme-proc ()
   "Return the current Scheme process, starting one if necessary."
