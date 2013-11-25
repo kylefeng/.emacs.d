@@ -118,6 +118,7 @@
 
 (defvar my-packages 
   '(starter-kit
+    clojure-mode
     cider
     coffee-mode
     erlang
