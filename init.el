@@ -165,6 +165,7 @@
 
 ;; Paredit-mode
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
+(add-hook 'cider-repl-mode-hook 'remove-dos-eol)
 (add-hook 'cider-repl-mode-hook 'highlight-parentheses-mode)
 (add-hook 'cider-mode-hook 'paredit-mode)
 
