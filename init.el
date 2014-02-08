@@ -34,7 +34,6 @@
 (add-to-list 'load-path "~/.emacs.d/color-theme/tomorrow-theme")
 (require 'color-theme-tomorrow)
 (color-theme-tomorrow-night-bright)
-
 ;; Powerline
 (add-to-list 'load-path "~/.emacs.d/powerline")
 (require 'powerline)
@@ -118,7 +117,11 @@
 
 (defvar my-packages 
   '(starter-kit
+    starter-kit-lisp
+    starter-kit-bindings
+    starter-kit-eshell
     clojure-mode
+    clojure-test-mode
     cider
     coffee-mode
     erlang
