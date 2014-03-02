@@ -134,7 +134,6 @@
     col-highlight
     crosshairs
     haskell-mode
-    sml-mode
     soft-morning-theme
     json-mode)
   "A list of packages to ensure are installed at launch.")
@@ -171,6 +170,7 @@
 (add-hook 'cider-repl-mode-hook 'remove-dos-eol)
 (add-hook 'cider-repl-mode-hook 'highlight-parentheses-mode)
 (add-hook 'cider-mode-hook 'paredit-mode)
+(add-hook 'clojure-mode-hook 'paredit-mode)
 
 ;; Enable eldoc
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
