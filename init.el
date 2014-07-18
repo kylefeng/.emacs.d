@@ -64,6 +64,7 @@
 (setq auto-mode-alist
       (cons '("\\.io" . io-mode) auto-mode-alist))
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Files
 
 (setq backup-by-copying t
@@ -169,6 +170,9 @@
 
 (add-hook 'text-mode-hook
           (lambda () (turn-on-auto-fill 0)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; xml
+(setq sgml-basic-offset 4)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Markdown
