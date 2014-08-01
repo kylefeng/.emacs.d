@@ -33,6 +33,9 @@
 (show-paren-mode t)
 (setq show-paren-style 'parentheses)
 
+;; Turn off menu bar
+(menu-bar-mode -1)
+
 ;; Size of window
 (setq default-frame-alist
   '((height . 40)
@@ -101,15 +104,3 @@
   (interactive)
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Hippie Expand
-(global-set-key (kbd "M-/") 'hippie-expand)
-
-(setq hippie-expand-try-functions-list
-      '(try-expand-all-abbrevs try-expand-dabbrev
-        try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill
-        try-complete-lisp-symbol-partially try-complete-lisp-symbol
-        try-complete-file-name-partially try-complete-file-name))
-
-;; crosshair highlighting
-(toggle-crosshairs-when-idle)
