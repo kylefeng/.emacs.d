@@ -1,12 +1,5 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Package
-
-;; Cask
-(require 'cask "/usr/local/Cellar/cask/0.7.0/cask.el")
-(cask-initialize)
-(require 'pallet)
-
-;; load custom
 (add-to-list 'load-path "~/.emacs.d/custom")
+(load "my-package.el")
 (load "my-common-setup.el")
 (load "my-auto-complete.el")
 (load "my-clojure.el")
