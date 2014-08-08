@@ -1,17 +1,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Package
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+(setq package-archives '(("melpa-stable" . "http://melpa-stable.milkbox.net/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
                          ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
-
+                         ("gnu" . "http://elpa.gnu.org/packages/")))
+ 
 (defvar my-packages 
   '(starter-kit
     starter-kit-lisp
     starter-kit-bindings
     starter-kit-eshell
     clojure-mode
-    clojure-test-mode
     cider
-    ac-nrepl
+    ac-cider
     coffee-mode
     erlang
     auto-complete
