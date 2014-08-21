@@ -39,3 +39,5 @@
 (depends-on "starter-kit-lisp")
 (depends-on "vline")
 (depends-on "yaml-mode")
+(depends-on "web-mode")
+(depends-on "enh-ruby-mode")

@@ -16,6 +16,15 @@
           'turn-off-auto-fill)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Hightlight indentation
+(add-to-list 'load-path "~/.emacs.d/highlight-indentation")
+(require 'highlight-indentation)
+(add-hook 'enh-ruby-mode-hook
+          (lambda () (highlight-indentation-current-column-mode)))
+(add-hook 'coffee-mode-hook
+          (lambda () (highlight-indentation-current-column-mode)))
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Hippie Expand
 (global-set-key (kbd "M-/") 'hippie-expand)
 
