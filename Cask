@@ -1,5 +1,8 @@
 (source melpa)
+(source marmalade)
+(source gnu)
 
+(depends-on "pallet")
 (depends-on "ac-cider")
 (depends-on "auto-complete")
 (depends-on "cask")
@@ -25,7 +28,6 @@
 (depends-on "magit")
 (depends-on "markdown-mode")
 (depends-on "package-build")
-(depends-on "pallet")
 (depends-on "paredit")
 (depends-on "pkg-info")
 (depends-on "popup")
@@ -41,3 +43,4 @@
 (depends-on "yaml-mode")
 (depends-on "web-mode")
 (depends-on "enh-ruby-mode")
+(depends-on "emmet-mode")
