@@ -1,6 +1,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; global configs
 (global-linum-mode t)
 
+;; change scratch init message
+(setq initial-scratch-message "")
+
 ;; Close *Gnu Emacs* Buffer
 (setq inhibit-startup-screen t)
 
