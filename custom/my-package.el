@@ -39,7 +39,7 @@
       (package-install p))))
 
 (defun other-platform-package ()
-  (require 'cask "/usr/local/Cellar/cask/0.7.0/cask.el") ;; Cask
+  (require 'cask "/usr/local/Cellar/cask/0.7.2/cask.el") ;; Cask
   (cask-initialize)
   (require 'pallet))
 
