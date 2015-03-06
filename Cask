@@ -44,3 +44,4 @@
 (depends-on "web-mode")
 (depends-on "enh-ruby-mode")
 (depends-on "emmet-mode")
+(depends-on "groovy-mode")

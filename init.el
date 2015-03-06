@@ -6,6 +6,7 @@
 (load "my-clojure.el")
 (load "my-web.el")
 (load "my-haskell.el")
+(load "my-groovy.el")
 (load "my-scheme.el")
 (load "my-org.el")
 (load "my-others.el")
