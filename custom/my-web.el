@@ -26,4 +26,6 @@
             (setq web-mode-css-indent-offset 4)
             (setq web-mode-code-indent-offset 4)))
 
-(define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
+(remove-hook 'web-mode-hook #'turn-on-auto-fill)
+
+'(define-key web-mode-map (kbd "C-n") 'web-mode-tag-match)
