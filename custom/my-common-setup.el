@@ -107,5 +107,5 @@
   (setq buffer-display-table (make-display-table))
   (aset buffer-display-table ?\^M []))
 
-(add-hook 'text-mode-hook
+'(add-hook 'text-mode-hook
           (lambda () (turn-on-auto-fill 0)))
