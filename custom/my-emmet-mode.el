@@ -10,7 +10,8 @@
 (add-hook 'emmet-mode-hook (lambda () (setq emmet-indentation 2)))
 
 (setq emmet-move-cursor-between-quotes t)
-(setq emmet-move-cursor-after-expanding nil)
+;; (setq emmet-move-cursor-after-expanding nil)
+
 
 
 
