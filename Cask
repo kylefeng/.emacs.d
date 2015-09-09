@@ -47,3 +47,4 @@
 (depends-on "web-mode")
 (depends-on "yaml-mode")
 (depends-on "reveal-in-finder")
+(depends-on "go-mode")
