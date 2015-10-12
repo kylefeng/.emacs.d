@@ -109,3 +109,13 @@
 
 '(add-hook 'text-mode-hook
           (lambda () (turn-on-auto-fill 0)))
+
+
+'(when (memq window-system '(mac ns))
+   (exec-path-from-shell-initialize))
+
+(cond
+ ((eq window-system 'ns)
+  (setq shell-command-switch "-lc")))
+
+
