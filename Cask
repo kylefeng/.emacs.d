@@ -53,3 +53,6 @@
 (depends-on "utop")
 (depends-on "merlin")
 (depends-on "exec-path-from-shell")
+(depends-on "elpy")
+
+
