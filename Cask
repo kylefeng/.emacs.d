@@ -54,5 +54,10 @@
 (depends-on "merlin")
 (depends-on "exec-path-from-shell")
 (depends-on "elpy")
+;; scala
+(depends-on "scala-mode2")
+(depends-on "scala-outline-popup")
+(depends-on "ensime")
+
 
 
