@@ -7,7 +7,7 @@
 ;; Close *Gnu Emacs* Buffer
 (setq inhibit-startup-screen t)
 
-(setq visible-bell t)
+(setq visible-bell nil)
 (setq x-select-enable-clipboard t)
 (ispell-change-dictionary "american" t)
 (setq default-buffer-file-coding-system 'utf-8)
