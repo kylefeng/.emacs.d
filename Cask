@@ -21,7 +21,12 @@
 (depends-on "find-file-in-project")
 (depends-on "git-commit-mode")
 (depends-on "git-rebase-mode")
+
+;;;;;;;;;;;;;;;;;;;;;;; golang
 (depends-on "go-mode")
+(depends-on "company-go")
+;;;;;;;;;;;;;;;;;;;;;;;
+
 (depends-on "graphviz-dot-mode")
 (depends-on "groovy-mode")
 (depends-on "haskell-mode")

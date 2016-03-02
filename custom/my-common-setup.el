@@ -13,6 +13,8 @@
 (setq default-buffer-file-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 
+(setq tab-width 4)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Display
 
 ;; Font
@@ -115,11 +117,25 @@
           (lambda () (turn-on-auto-fill 0)))
 
 
-'(when (memq window-system '(mac ns))
-   (exec-path-from-shell-initialize))
+;; exec-path-from-shell
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
-(cond
- ((eq window-system 'ns)
-  (setq shell-command-switch "-lc")))
+(defun set-exec-path-from-shell-PATH ()
+  (let ((path-from-shell (replace-regexp-in-string
+                          "[ \t\n]*$"
+                          ""
+                          (shell-command-to-string "$SHELL --login -i -c 'echo $PATH"))))
+    (setenv "PATH" path-from-shell)
+    (setq eshell-path-env path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(setq exec-path (cons "/usr/local/bin" exec-path))
+
+  (when window-system (set-exec-path-from-shell-PATH))
+
+  (cond
+   ((eq window-system 'ns)
+    (setq shell-command-switch "-lc")))
 
 

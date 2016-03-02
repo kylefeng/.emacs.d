@@ -12,6 +12,7 @@
 (load "my-others.el")
 (load "my-ocaml.el")
 (load "my-python.el")
+(load "my-go.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
